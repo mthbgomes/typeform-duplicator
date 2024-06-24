@@ -3,13 +3,9 @@ const axios = require('axios');
 const getSourceFormData = require('./getSourceFormData');
 const createFormTemplate = require('./createFormTemplate');
 
-async function duplicateForm() {
-  const formId = 'flpHU7hr';
-  const formTitle = 'Formulário Teste 123'
+async function duplicateForm(formTemplate, newFormTitle) {
   try {
-    const sourceFormData = await getSourceFormData(formId);
-    const formTemplate = createFormTemplate(sourceFormData);
-    formTemplate.title = formTitle
+    formTemplate.title = newFormTitle
     const postUrl = 'https://api.typeform.com/forms'
     const options = {
       method: 'POST',
@@ -28,4 +24,4 @@ async function duplicateForm() {
   }
 }
 
-duplicateForm();
+module.exports = duplicateForm
